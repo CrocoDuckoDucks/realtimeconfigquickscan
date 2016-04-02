@@ -17,7 +17,7 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 package PreemptRtCheck;
 
-use base qw(KernelConfigCheck);
+use base qw(KernelConfigCheck GenerateComment);
 
 sub new
 {
@@ -30,14 +30,14 @@ sub new
 sub executeWithKernelConfig($)
 {
 	my $self = shift;
+	my $caller = ref($self);
 	my $kernelConfig = shift;
 
 	if ( $kernelConfig !~ /CONFIG_PREEMPT_RT=y|CONFIG_PREEMPT_RT_FULL=y/)
 	{
 		$self->{RESULTKIND} = "not good";
 		$self->{RESULT} = "not found";
-		$self->{COMMENT} = "Kernel without real-time capabilities found\n".
-			"For more information, see http://wiki.linuxaudio.org/wiki/system_configuration#installing_a_real-time_kernel";
+		$self->{COMMENT} = GenerateComment->execute($caller);
 	}
 	else
 	{	

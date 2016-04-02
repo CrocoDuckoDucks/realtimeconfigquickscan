@@ -17,7 +17,7 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 package RtcCheck;
 
-use base qw(Check);
+use base qw(Check GenerateComment);
 
 sub new
 {
@@ -30,6 +30,7 @@ sub new
 sub execute
 {
 	my $self = shift;
+	my $caller = ref($self);
 	my $device = '/dev/rtc';
 
 	if ( -e $device )
@@ -44,9 +45,7 @@ sub execute
 		{	
 			$self->{RESULTKIND} = "not good";
 			$self->{RESULT} = "not readable";
-			$self->{COMMENT} = "$device found, but not readable.\n".
-				"make $device readable by the 'audio' group\n".
-				"For more information, see http://wiki.linuxaudio.org/wiki/system_configuration#hardware_timers";
+			$self->{COMMENT} = GenerateComment->execute($caller, $device);
 		}
 	}
 	else

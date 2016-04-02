@@ -17,7 +17,7 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 package HighResTimersCheck;
 
-use base qw(KernelConfigCheck);
+use base qw(KernelConfigCheck GenerateComment);
 
 sub new
 {
@@ -30,15 +30,14 @@ sub new
 sub executeWithKernelConfig($)
 {
 	my $self = shift;
+	my $caller = ref($self);
 	my $kernelConfig = shift;
 
 	if ( $kernelConfig !~ /CONFIG_HIGH_RES_TIMERS=y/)
 	{
 		$self->{RESULTKIND} = "not good";
 		$self->{RESULT} = "not found";
-		$self->{COMMENT} = "Try enabling high-resolution timers (CONFIG_HIGH_RES_TIMERS under 'Processor type and features')\n";
-			"For more information, see http://wiki.linuxaudio.org/wiki/system_configuration#installing_a_real-time_kernel\n".
-			"http://irc.esben-stien.name/mediawiki/index.php/Setting_Up_Real_Time_Operation_on_GNU/Linux_Systems#Kernel";
+		$self->{COMMENT} = GenerateComment->execute($self);
 	}
 	else
 	{	

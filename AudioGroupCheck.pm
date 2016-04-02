@@ -17,7 +17,7 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 package AudioGroupCheck;
 
-use base qw(Check);
+use base qw(Check GenerateComment);
 
 sub new
 {
@@ -30,11 +30,12 @@ sub new
 sub execute
 {
 	my $self = shift;
+	my $caller = ref($self);
 	if ( `groups | grep audio` eq "" )
 	{
 		$self->{RESULTKIND} = "not good";
 		$self->{RESULT} = "no";
-		$self->{COMMENT} = "add yourself to the audio group with 'adduser \$USER audio'\n"
+		$self->{COMMENT} = GenerateComment->execute($caller);
 	} else {
 		$self->{RESULTKIND} = "good";
 		$self->{RESULT} = "yes";

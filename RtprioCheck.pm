@@ -17,7 +17,7 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 package RtprioCheck;
 
-use base qw(Check);
+use base qw(Check GenerateComment);
 
 sub new
 {
@@ -30,6 +30,7 @@ sub new
 sub execute
 {
 	my $self = shift;
+	my $caller = ref($self);
 	my $rtprioout = `chrt 80 echo success`;
 	if ($rtprioout =~ /success/)
 	{
@@ -41,8 +42,7 @@ sub execute
 	{
 		$self->{RESULTKIND} = "not good";
 		$self->{RESULT} = "no";
-		$self->{COMMENT} = "Could not assign a 80 rtprio value. Set up limits.conf.\n".
-			"For more information, see http://wiki.linuxaudio.org/wiki/system_configuration#limitsconfaudioconf";
+		$self->{COMMENT} = GenerateComment->execute($caller);
 	}
 }
 

@@ -17,7 +17,7 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 package WatchesCheck;
 
-use base qw(Check);
+use base qw(Check GenerateComment);
 
 sub new
 {
@@ -30,13 +30,13 @@ sub new
 sub execute
 {
 	my $self = shift;
+	my $caller = ref($self);
 
 	if (`cat /proc/sys/fs/inotify/max_user_watches` < 524288)
 	{
 		$self->{RESULTKIND} = "not good";
 		$self->{RESULT} = "< 524288";
-		$self->{COMMENT} = "increase max_user_watches by adding 'fs.inotify.max_user_watches = 524288' to /etc/sysctl.conf and rebooting\n".
-			"For more information, see http://wiki.linuxaudio.org/wiki/system_configuration#sysctlconf";
+		$self->{COMMENT} = GenerateComment->execute($caller);
 	} else {
 		$self->{RESULTKIND} = "good";
 		$self->{RESULT} = ">= 524288";

@@ -17,7 +17,7 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 package BackgroundCheck;
 
-use base qw(Check);
+use base qw(Check GenerateComment);
 
 sub new
 {
@@ -30,6 +30,7 @@ sub new
 sub execute
 {
 	my $self = shift;
+	my $caller = ref($self);
 	$self->{RESULTKIND} = "good";
 	$self->{RESULT} = "";
 	$self->{COMMENT} = undef;
@@ -45,7 +46,7 @@ sub execute
 	}
 	if ($self->{RESULTKIND} eq "not good")
 	{
-		$self->{COMMENT} = "See also: http://wiki.linuxaudio.org/wiki/system_configuration#disabling_resource-intensive_daemons_services_and_processes";
+		$self->{COMMENT} = GenerateComment->execute($caller);
 	}
 	else
 	{

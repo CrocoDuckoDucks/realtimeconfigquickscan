@@ -18,7 +18,7 @@
 #!/usr/bin/perl
 
 use strict;
-use DistroCheck;
+use DistributionCheck;
 use RootCheck;
 use GovernorCheck;
 use SwappinessCheck;
@@ -41,7 +41,7 @@ sub new {
 	my $self = {};
 	$self->{CHECKS} = ();
 
-	push(@{$self->{CHECKS}}, DistroCheck->new);
+	push(@{$self->{CHECKS}}, DistributionCheck->new);
 	push(@{$self->{CHECKS}}, RootCheck->new);
 	push(@{$self->{CHECKS}}, NoAtimeCheck->new);
 	push(@{$self->{CHECKS}}, GovernorCheck->new);

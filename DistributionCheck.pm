@@ -34,8 +34,8 @@ sub execute
 
 	my $distro_ID = IdentifyDistribution->execute();
 
-	if ($distro_ID)
-	{
+	if ($distro_ID) {
+
 		$result->{RESULT} = $distro_ID;
 
 		if ($distro_ID eq 'arch') {
@@ -43,18 +43,22 @@ sub execute
 			$result->{RESULTKIND} = "good";
 			$result->{COMMENT} = "Official Pro Audio documentation for $distro_ID: https://wiki.archlinux.org/index.php/Pro_Audio";
 
-		} elsif ($distro_ID eq 'fedora') {
+		}
+
+		elsif ($distro_ID eq 'fedora') {
 
 			$result->{RESULTKIND} = "good";
 			$result->{COMMENT} = "Official Pro Audio documentation for $distro_ID: https://wiki.archlinux.org/index.php/Pro_Audiohttps://fedoraproject.org/wiki/Documentation_for_Musicians";
 
-		} else {
+		}
+
+		else {
 			$result ->{RESULTKIND} = "not good";
 			$result->{COMMENT} = "Not an actual problem: your distribution does not have an Official Pro Audio Documantation page";
 		}
 	}
-	else
-	{
+
+	else {
 		$result->{RESULT} = "Unidentified Distribution";
 		$result->{RESULTKIND} = "not good";
 		$result->{COMMENT} = "Not an actual problem: I cannot supply a link for an Official Pro Audio Documantation page for yor Distribution";

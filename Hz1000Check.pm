@@ -17,7 +17,7 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 package Hz1000Check;
 
-use base qw(KernelConfigCheck);
+use base qw(KernelConfigCheck GenerateComment);
 
 sub new
 {
@@ -30,19 +30,17 @@ sub new
 sub executeWithKernelConfig($)
 {
 	my $self = shift;
+	my $caller = ref($self);
 	my $kernelConfig = shift;
 
 	if ( $kernelConfig !~ /CONFIG_HZ=1000/)
 	{
 		$self->{RESULTKIND} = "not good";
 		$self->{RESULT} = "not found";
-		$self->{COMMENT} = "Try setting CONFIG_HZ to 1000\n";
-			"For more information, see http://wiki.linuxaudio.org/wiki/system_configuration#installing_a_real-time_kernel\n".
-			"http://www.rosegardenmusic.com/wiki/frequently_asked_questions#what_does_system_timer_resolution_is_too_low_mean\n".
-			"http://irc.esben-stien.name/mediawiki/index.php/Setting_Up_Real_Time_Operation_on_GNU/Linux_Systems#Kernel"
+		$self->{COMMENT} = GenerateComment->execute($caller);
 	}
 	else
-	{	
+	{
 		$self->{RESULTKIND} = "good";
 		$self->{RESULT} = "found";
 		$self->{COMMENT} = undef;

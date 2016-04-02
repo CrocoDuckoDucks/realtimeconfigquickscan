@@ -17,7 +17,7 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 package GovernorCheck;
 
-use base qw(Check);
+use base qw(Check GenerateComment);
 
 sub new
 {
@@ -30,6 +30,7 @@ sub new
 sub execute
 {
 	my $self = shift;
+	my $caller = ref($self);
 	$self->{RESULTKIND} = "good";
 	$self->{RESULT} = "";
 	$self->{COMMENT} = undef;
@@ -52,8 +53,7 @@ sub execute
 
 	if ($self->{RESULTKIND} eq "not good")
 	{
-		$self->{COMMENT} = "Set CPU Governors to 'performance' with 'cpufreq-set -c <cpunr> -g performance'\n" .
-			"See also: http://linuxmusicians.com/viewtopic.php?f=27&t=844";
+		$self->{COMMENT} = GenerateComment->execute($caller);
 	}
 }
 

@@ -17,7 +17,7 @@
 #    If not, see <http://www.gnu.org/licenses/>.
 package SwappinessCheck;
 
-use base qw(Check);
+use base qw(Check GenerateComment);
 
 sub new
 {
@@ -30,6 +30,7 @@ sub new
 sub execute
 {
 	my $self = shift;
+	my $caller = ref($self);
 	$self->{RESULTKIND} = "good";
 	$self->{RESULT} = "";
 	$self->{COMMENT} = undef;
@@ -47,9 +48,7 @@ sub execute
 		$self->{RESULT} = $1;
 		if ($1 > 10)
 		{
-			$self->{COMMENT} = "** vm.swappiness is larger than 10\n" .
-				"set it with '/sbin/sysctl -w vm.swappiness=10'\n".
-				"See also: http://linuxmusicians.com/viewtopic.php?f=27&t=452&start=30#p8916";
+			$self->{COMMENT} = GenerateComment->execute($caller);
 			$self->{RESULTKIND} = "not good";
 		}
 		else
