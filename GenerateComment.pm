@@ -42,6 +42,10 @@ sub execute
 		if ($distro_ID eq 'arch') {
 			$addcomm = $addcomm. "https://wiki.archlinux.org/index.php/CPU_frequency_scaling";
 		}
+        
+        elsif ($distro_ID eq 'debian') {
+            $addcomm = $addcomm. "https://wiki.debian.org/HowTo/CpuFrequencyScaling";
+        }
 
 		elsif ($distro_ID eq 'fedora') {
 			$addcomm = $addcomm. "https://docs.fedoraproject.org/en-US/Fedora/20/html/Power_Management_Guide/cpufreq_governors.html";
@@ -127,6 +131,10 @@ sub execute
 		if ($distro_ID eq 'arch') {
 			$addcomm = $addcomm. "https://wiki.archlinux.org/index.php/Pro_Audio#System_Configuration";
 		}
+        
+        elsif ($distro_ID eq 'debian') {
+            $addcomm = $addcomm. "https://wiki.debian.org/SoundConfiguration";
+        }
 
 		else {
 			$addcomm = "";
@@ -156,6 +164,10 @@ sub execute
 		if ($distro_ID eq 'arch') {
 			$addcomm = $addcomm. "https://wiki.archlinux.org/index.php/Pro_Audio#Realtime_Kernel";
 		}
+        
+        if ($distro_ID eq 'debian') {
+            $addcomm = $adcomm. "https://wiki.debian.org/DebianMultimedia#Realtime_kernel";
+        }
 
 		else {
 			$addcomm = "";
@@ -170,6 +182,10 @@ sub execute
 		if ($distro_ID eq 'arch') {
 			$addcomm = $addcomm. "https://wiki.archlinux.org/index.php/Pro_Audio#Realtime_Kernel";
 		}
+        
+        if ($distro_ID eq 'debian') {
+            $addcomm = $adcomm. "https://wiki.debian.org/DebianMultimedia#Realtime_kernel";
+        }
 
 		else {
 			$addcomm = "";
@@ -186,6 +202,10 @@ sub execute
 		if ($distro_ID eq 'arch') {
 			$addcomm = $addcomm. "https://wiki.archlinux.org/index.php/Pro_Audio#Realtime_Kernel";
 		}
+        
+        if ($distro_ID eq 'debian') {
+            $addcomm = $adcomm. "https://wiki.debian.org/DebianMultimedia#Realtime_kernel";
+        }
 
 		else {
 			$addcomm = "";

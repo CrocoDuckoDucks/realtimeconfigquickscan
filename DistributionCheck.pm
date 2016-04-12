@@ -39,17 +39,18 @@ sub execute
 		$result->{RESULT} = $distro_ID;
 
 		if ($distro_ID eq 'arch') {
-
 			$result->{RESULTKIND} = "good";
 			$result->{COMMENT} = "Official Pro Audio documentation for $distro_ID: https://wiki.archlinux.org/index.php/Pro_Audio";
-
 		}
+        
+        elsif ($distro_ID eq 'debian') {
+            $result->{RESULTKIND} = "good";
+            $result->{COMMENT} = "There isn't Official Pro Audio documentation for $distro_ID.";
+        }
 
 		elsif ($distro_ID eq 'fedora') {
-
 			$result->{RESULTKIND} = "good";
 			$result->{COMMENT} = "Official Pro Audio documentation for $distro_ID: https://wiki.archlinux.org/index.php/Pro_Audiohttps://fedoraproject.org/wiki/Documentation_for_Musicians";
-
 		}
 
 		else {
