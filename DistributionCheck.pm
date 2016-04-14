@@ -50,7 +50,8 @@ sub execute
 
 		elsif ($distro_ID eq 'fedora') {
 			$result->{RESULTKIND} = "good";
-			$result->{COMMENT} = "Official Pro Audio documentation for $distro_ID: https://wiki.archlinux.org/index.php/Pro_Audiohttps://fedoraproject.org/wiki/Documentation_for_Musicians";
+			$result->{COMMENT} = "Official Pro Audio documentation for $distro_ID: https://fedoraproject.org/wiki/Documentation_for_Musicians ,\n".
+                                    "https://fedoraproject.org/wiki/Fedora_jam, https://fedoraproject.org/wiki/JACK_Audio_Connection_Kit and https://fedoraproject.org/wiki/Fedora_jam \nWARNING: documentation could be outdated!!!";
 		}
 
 		else {

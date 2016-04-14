@@ -135,6 +135,10 @@ sub execute
         elsif ($distro_ID eq 'debian') {
             $addcomm = $addcomm. "https://wiki.debian.org/SoundConfiguration";
         }
+        
+        elsif ($distro_ID eq 'fedora') {
+            $addcomm = $addcomm. "https://docs.fedoraproject.org/en-US/Fedora/12/html/Deployment_Guide/ch-users-groups.html";
+        }
 
 		else {
 			$addcomm = "";
@@ -165,8 +169,13 @@ sub execute
 			$addcomm = $addcomm. "https://wiki.archlinux.org/index.php/Pro_Audio#Realtime_Kernel";
 		}
         
-        if ($distro_ID eq 'debian') {
-            $addcomm = $adcomm. "https://wiki.debian.org/DebianMultimedia#Realtime_kernel";
+        elsif ($distro_ID eq 'debian') {
+            $addcomm = $addcomm. "https://wiki.debian.org/DebianMultimedia#Realtime_kernel";
+        }
+        
+        elsif ($distro_ID eq 'fedora') {
+            $addcomm = $addcomm. "https://docs.fedoraproject.org/en-US/Fedora/15/html/Musicians_Guide/chap-Musicians_Guide-Real_Time_and_Low_Latency.html\n".
+                        "WARNING: this source could be outdated!!!\n See also https://fedoraproject.org/wiki/Building_a_custom_kernel";
         }
 
 		else {
@@ -183,8 +192,13 @@ sub execute
 			$addcomm = $addcomm. "https://wiki.archlinux.org/index.php/Pro_Audio#Realtime_Kernel";
 		}
         
-        if ($distro_ID eq 'debian') {
+        elsif ($distro_ID eq 'debian') {
             $addcomm = $adcomm. "https://wiki.debian.org/DebianMultimedia#Realtime_kernel";
+        }
+        
+        elsif ($distro_ID eq 'fedora') {
+            $addcomm = $addcomm. "https://docs.fedoraproject.org/en-US/Fedora/15/html/Musicians_Guide/chap-Musicians_Guide-Real_Time_and_Low_Latency.html\n".
+                        "WARNING: this source could be outdated!!!\n See also https://fedoraproject.org/wiki/Building_a_custom_kernel";
         }
 
 		else {
@@ -205,6 +219,11 @@ sub execute
         
         if ($distro_ID eq 'debian') {
             $addcomm = $adcomm. "https://wiki.debian.org/DebianMultimedia#Realtime_kernel";
+        }
+        
+        elsif ($distro_ID eq 'fedora') {
+            $addcomm = $addcomm. "https://docs.fedoraproject.org/en-US/Fedora/15/html/Musicians_Guide/chap-Musicians_Guide-Real_Time_and_Low_Latency.html\n".
+                        "WARNING: this source could be outdated!!!\n See also https://fedoraproject.org/wiki/Building_a_custom_kernel";
         }
 
 		else {
